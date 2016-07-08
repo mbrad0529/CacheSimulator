@@ -6,6 +6,14 @@
 *
 * @section DESCRIPTION
 * Basic cache simulator, first argument is cache config file, second argument is memory trace
+* using LRU replacement algorithm and Write-Back and Write-Allocate policy
+*
+* Cache file is associativity as an integer, line size in bytes, cache size
+* in bytes, each on their own line.
+*
+* Trace file is <AccessType>:<RefSize>:<HexAddress>, AccessType is R or W,
+* Ref size is size of reference in bytes, hex address is hex address of mem
+* location, addresses are 32b.
 * TODO:
 * 
 **********************************************************************/
