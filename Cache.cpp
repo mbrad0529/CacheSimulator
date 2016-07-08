@@ -224,7 +224,6 @@ void Cache::operator () (std::ifstream& ifs)
 			{
 				++accesses_;
 			}
-			++numBlocks_;
 		}
 		else if (op == "Write")
 		{
@@ -237,7 +236,6 @@ void Cache::operator () (std::ifstream& ifs)
 			{
 				++accesses_;
 			}
-			++numBlocks_;
 		}
 	}
 	ifs.close();
