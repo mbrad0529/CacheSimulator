@@ -265,7 +265,6 @@ size_t Cache::calcTag(std::string s)
 
 size_t Cache::calcOffset(std::string s)
 {
-	//std::cout << "Calculating Offset!\n"; // debug
 	std::string b = parseHex(s);
 	size_t offsetStart = 32 - offsetBits_;
 	std::string offsetStr = b.substr(offsetStart, offsetBits_);
