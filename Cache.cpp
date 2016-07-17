@@ -287,7 +287,6 @@ size_t Cache::binStringToInt(std::string s)
 
 	size_t num = 0;
 
-	index = s.length() - 1; // debug
 	for (size_t i = 0; index >= 0; --index, ++i) // i used to determine power
 	{
 		if (s[index] == '1')
@@ -456,7 +455,7 @@ bool Cache::Read(Access& r)
 
 		if (isFull(t)) // if block is full, replace oldest
 		{
-	     	size_t j = getOldest(t);
+	     		size_t j = getOldest(t);
 			cache_[t][j] = r;
 		}
 		else // else just add r in to the block
