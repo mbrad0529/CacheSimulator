@@ -103,13 +103,15 @@ public:
 	void setDirty() { dirty_ = 1; }
 
 	// Access accessors
-	std::string getOp() { return op_; }
+	std::string getOp() const { return op_; }
 	std::string getRefSize() const { return refSize_; } 
 	std::string getAddress() const { return address_; }
 	size_t getOffset() const { return offset_; }
 	size_t getIndex() const { return index_; }
 	size_t getTag() const { return tag_; }
 	size_t getAge() const { return age_; }
+	
+	void setAge(size_t t) { age_ = t; }
 
 	bool Valid() const { return valid_; }
 	bool Dirty() const { return dirty_; }
@@ -439,7 +441,8 @@ bool Cache::Read(Access& r)
 	for (size_t i = 0; i < cache_[t].size(); ++i)
 	{
 		if (cache_[t][i].Valid() && (cache_[t][i].getTag() == r.getTag())) // hit
-		{
+		{	
+			cache_[t][i].setAge(0); // sets this entry to age 0
 			hit = 1;
 			hitMiss_.push_back(1);
 			return 1;
@@ -476,6 +479,7 @@ bool Cache::Write(Access& w)
 	{
 		if (cache_[t][i].Valid() && (cache_[t][i].getTag() == w.getTag())) // hit
 		{
+			cache_[t][i].setAge(0); // sets this entry to age 0
 			cache_[t][i].setDirty();
 			hit = 1;
 			hitMiss_.push_back(1);
